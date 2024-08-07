@@ -11,11 +11,27 @@ export class AuthService
   router = inject(Router)
   constructor() { }
 
-  signOut()
+  public signOut(): void
   {
     google.accounts.id.disableAutoSelect();
     this.router.navigate(['/']);
   }
+
+  public initialize(sender: any, buttonDiv: HTMLElement | null, onLoggedIn: (sender: any, resp: any) => void): void
+  {
+    google.accounts.id.initialize({
+      client_id: '152883696216-mistirreo1g2r48kabshjqjt6trg3cfs.apps.googleusercontent.com',
+      callback: (resp: any) => onLoggedIn(sender, resp)
+    });
+
+    google.accounts.id.renderButton(buttonDiv, {
+      theme: 'filled_blue',
+      size: 'large',
+      shape: 'rectangle',
+      width: 350
+    });
+  }
+
 }
 
 
