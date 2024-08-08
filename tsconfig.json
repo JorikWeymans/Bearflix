@@ -24,8 +24,11 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "@services/*": [
-        "src/app/shared/services/*"
+      "@shared/*": [
+        "src/app/shared/*"
+      ],
+      "@core/*": [
+        "src/app/core/*"
       ]
     }
   },
