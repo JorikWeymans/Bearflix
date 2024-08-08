@@ -3,7 +3,8 @@ import { AuthService } from '@shared/services/auth.service';
 import { HeaderComponent } from '@core/components/header/header.component';
 import { BannerComponent } from '@core/components/banner/banner.component';
 import { MovieService } from '@shared/services/movie.service';
-import { MovieCarouselComponent } from '@shared/movie-carousel/movie-carousel.component';
+import { MovieCarouselComponent } from '@shared/components/movie-carousel/movie-carousel.component';
+import { IVideoContent } from '@shared/models/video-content.interface';
 
 @Component({
   selector: 'app-browse',
@@ -15,7 +16,6 @@ import { MovieCarouselComponent } from '@shared/movie-carousel/movie-carousel.co
 export class BrowseComponent implements OnInit
 {
 
-
   auth = inject(AuthService)
   movieService = inject(MovieService)
 
@@ -23,6 +23,8 @@ export class BrowseComponent implements OnInit
   profileImage = JSON.parse(sessionStorage.getItem("LoggedInUser")!).picture;
   email = JSON.parse(sessionStorage.getItem("LoggedInUser")!).email;
 
+
+  popularMovies: IVideoContent[] = [];
   SignOut()
   {
     sessionStorage.removeItem("LoggedInUser");
@@ -35,6 +37,7 @@ export class BrowseComponent implements OnInit
     this.movieService.getMovies().subscribe(res =>
     {
       console.log(res);
+      this.popularMovies = res.results;
     })
   }
 }
