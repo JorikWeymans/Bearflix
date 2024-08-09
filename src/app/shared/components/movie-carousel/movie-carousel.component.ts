@@ -17,6 +17,7 @@ export class MovieCarouselComponent implements AfterViewInit, OnInit
   @Input() videoContents: IVideoContent[] = []
   @Input() title!: string;
   @ViewChild('swiperContainer') swiperContainer!: ElementRef
+  selectedContent: string | null = null;
 
   constructor() { }
   ngOnInit(): void
@@ -69,5 +70,15 @@ export class MovieCarouselComponent implements AfterViewInit, OnInit
         }
       }
     })
+  }
+
+  setHoverMovie(movie: IVideoContent)
+  {
+    this.selectedContent = movie.title ?? movie.name;
+  }
+
+  clearHoverMovie()
+  {
+    this.selectedContent = null;
   }
 }
