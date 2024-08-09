@@ -11,6 +11,7 @@ import { Component, Input } from '@angular/core';
 export class HeaderComponent
 {
   @Input({ required: true }) userImage: string = '';
+  @Input({ required: true }) name: string = '';
 
   navList = ["Home", "TV Shows", "News & Popular", "My List", "Browse by langauge"]
 }
