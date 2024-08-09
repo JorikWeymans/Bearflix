@@ -1,16 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { AuthService } from '@shared/services/auth.service';
+import { MovieCarouselComponent } from '@shared/components/movie-carousel/movie-carousel.component';
 import { HeaderComponent } from '@core/components/header/header.component';
 import { BannerComponent } from '@core/components/banner/banner.component';
 import { MovieService } from '@shared/services/movie.service';
-import { MovieCarouselComponent } from '@shared/components/movie-carousel/movie-carousel.component';
 import { IVideoContent } from '@shared/models/video-content.interface';
-import { forkJoin, map } from 'rxjs';
+import { forkJoin, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-browse',
   standalone: true,
-  imports: [HeaderComponent, BannerComponent, MovieCarouselComponent],
+  imports: [CommonModule, HeaderComponent, BannerComponent, MovieCarouselComponent],
   templateUrl: './browse.component.html',
   styleUrl: './browse.component.css'
 })
@@ -23,6 +24,9 @@ export class BrowseComponent implements OnInit
   name = JSON.parse(sessionStorage.getItem("LoggedInUser")!).name;
   profileImage = JSON.parse(sessionStorage.getItem("LoggedInUser")!).picture;
   email = JSON.parse(sessionStorage.getItem("LoggedInUser")!).email;
+
+  bannerDetail$ = new Observable<any>();
+  bannerVideo$ = new Observable<any>();
 
 
   movies: IVideoContent[] = [];
@@ -59,6 +63,9 @@ export class BrowseComponent implements OnInit
       .pipe(
         map(([movies, tvShows, ratedMovies, nowPlaying, upcoming, popular/*, topRated*/]) =>
         {
+          this.bannerDetail$ = this.movieService.getBannerDetail(movies.results[0].id);
+          this.bannerVideo$ = this.movieService.getBannerVideo(movies.results[0].id);
+
           return { movies, tvShows, ratedMovies, nowPlaying, upcoming, popular/*, topRated */ }
         })
       ).subscribe((res: any) =>

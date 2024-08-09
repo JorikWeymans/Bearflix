@@ -3,15 +3,27 @@ import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '
 import { IVideoContent } from '@shared/models/video-content.interface';
 import { DescriptionPipe } from '@shared/Pipes/description.pipe';
 import { ImagePipe } from '@shared/Pipes/image.pipe';
+import { animate, style, transition, trigger } from '@angular/animations';
+
 import Swiper from 'swiper';
+
 
 @Component({
   selector: 'app-movie-carousel',
   standalone: true,
   imports: [CommonModule, DescriptionPipe, ImagePipe],
   templateUrl: './movie-carousel.component.html',
-  styleUrl: './movie-carousel.component.scss'
+  styleUrl: './movie-carousel.component.scss',
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({ opacity: 0 }),
+        animate(500, style({ opacity: 1 }))
+      ])
+    ])
+  ]
 })
+
 export class MovieCarouselComponent implements AfterViewInit, OnInit
 {
   @Input() videoContents: IVideoContent[] = []

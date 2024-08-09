@@ -1,6 +1,7 @@
 <!-- component -->
 <app-header [userImage]="profileImage" [name]="name" />
-<app-banner />
+<app-banner [title]="(bannerDetail$ | async)?.original_title" [overview]="(bannerDetail$ | async)?.overview"
+    [key]="(bannerVideo$ | async)?.results[0].key" />
 <app-movie-carousel [title]="'Popular on Netflix'" [videoContents]="movies" />
 <app-movie-carousel [title]="'Trending TV shows'" [videoContents]="tvShows" />
 <app-movie-carousel [title]="'Now Playing Movies'" [videoContents]="nowPlayingMovies" />
