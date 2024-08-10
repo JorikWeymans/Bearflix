@@ -10,6 +10,10 @@ module.exports = {
         'secondary-color': '#EECD65',
         'tertiary-color': '#364529',
       },
+      fontFamily: {
+        'title-font': ['CarnevaleeFreakshow', 'sans-serif'], // Add custom font and fallback
+        'georgia': ['Georgia', 'sans-serif']
+      },
     },
   },
   plugins: [],

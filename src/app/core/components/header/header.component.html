@@ -1,19 +1,21 @@
 <header
     class="fixed w-full z-10 h-[110px] bg-tertiary-color  text-primary-color top-0 py-1.5 bg-[url('/assets/GrainTexture_15.jpg')] bg-blend-multiply">
     <div
-        class="  m-b-5 h-full  flex items-center justify-between px-10  border-secondary-color border-t border-b border-dashed">
-        <div class="flex gap-5">
+        class="m-b-5 h-full  flex items-center justify-between px-10 border-secondary-color border-t border-b border-dashed">
+        <div class="flex gap-5 flex-grow">
             <div class="flex gap-3 items-center">
                 <img width="70" src="assets/Bearflix.png" alt="Bearflix logo" />
-                <h2>Bearflix</h2>
+                <h2 class="font-title-font text-5xl">Bearflix</h2>
             </div>
-            <ul *ngFor="let item of navList" class="content-center">
-                <li class="cursor-pointer text-sm font-extralight hover:text-gray-400 transition-[1s]">
+
+            <ul class="content-center flex items-center gap-8 flex-grow center justify-center ">
+                <li *ngFor="let item of navList"
+                    class="cursor-pointer font-extralight hover:text-gray-400 transition-[1s] text-sm">
                     {{item}}</li>
             </ul>
         </div>
 
-        <div class=" flex items-center gap-4">
+        <div id="#profile-section" class=" flex items-center gap-">
             <div class="flex items-center gap-2">
                 <a href="/"><span>Welcome <strong>{{name}}</strong></span></a>
                 <img class="rounded-full" [src]="userImage" width="42" />

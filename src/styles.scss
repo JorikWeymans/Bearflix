@@ -3,3 +3,12 @@
 @tailwind utilities;
 
 @import 'node_modules/swiper/swiper.scss';
+
+@layer base {
+    @font-face {
+        font-family: 'CarnevaleeFreakshow';
+        src: url('./assets/Fonts/CarnevaleeFreakshow.ttf') format('truetype');
+        font-style: normal;
+        font-weight: normal;
+    }
+}
