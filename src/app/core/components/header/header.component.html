@@ -8,14 +8,14 @@
                 <h2 class="font-title-font text-5xl">Bearflix</h2>
             </div>
 
-            <ul class="content-center flex items-center gap-8 flex-grow center justify-center ">
+            <ul class="content-center flex items-center gap-16 flex-grow center justify-center ">
                 <li *ngFor="let item of navList"
                     class="cursor-pointer font-extralight hover:text-gray-400 transition-[1s] text-xl">
                     {{item}}</li>
             </ul>
         </div>
 
-        <div id="#profile-section" class=" flex items-center gap-">
+        <div id="#profile-section" class=" flex items-center gap-2">
             <div class="flex items-center gap-2">
                 <a href="/"><span>Welcome <strong>{{name}}</strong></span></a>
                 <img class="rounded-full" [src]="userImage" width="42" />
