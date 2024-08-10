@@ -12,7 +12,7 @@ module.exports = {
       },
       fontFamily: {
         'title-font': ['CarnevaleeFreakshow', 'sans-serif'], // Add custom font and fallback
-        'georgia': ['Georgia', 'sans-serif']
+        'default-font': ['Trepang', 'sans-serif']
       },
     },
   },
