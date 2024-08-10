@@ -7,11 +7,12 @@ import { BannerComponent } from '@core/components/banner/banner.component';
 import { MovieService } from '@shared/services/movie.service';
 import { IVideoContent } from '@shared/models/video-content.interface';
 import { forkJoin, map, Observable } from 'rxjs';
+import { FooterComponent } from "../../browse/footer/footer.component";
 
 @Component({
   selector: 'app-browse',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, BannerComponent, MovieCarouselComponent],
+  imports: [CommonModule, HeaderComponent, BannerComponent, MovieCarouselComponent, FooterComponent],
   templateUrl: './browse.component.html',
   styleUrl: './browse.component.css'
 })
