@@ -7,8 +7,10 @@ const options = {
     include_adult: 'false',
     include_video: 'true',
     language: 'en-US',
+    with_genres: '',
     page: '1',
     sort_by: 'popularity.desc',
+    with_keywords: '',
   },
 
   headers: {
@@ -31,9 +33,13 @@ export class MovieService
     })*/
   }
 
-  getMovies()
+  public getMovies(keyword: string = '', genre: string = '') 
   {
-    return this.http.get<any>('https://api.themoviedb.org/3/discover/movie', options)
+    const newOptions = options;
+    newOptions.params.with_genres = genre;
+    newOptions.params.with_keywords = keyword;
+
+    return this.http.get<any>('https://api.themoviedb.org/3/discover/movie', newOptions)
   }
 
   getTvShows()

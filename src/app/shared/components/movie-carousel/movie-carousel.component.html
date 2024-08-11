@@ -1,9 +1,10 @@
-<div class="container px-20 mt-14 mb-20">
-    <p class="text-tertiary-color font-title-font  text-6xl  my-3 ml-3 t font-extrabold">{{title}}</p>
+<div class="container px-20 mt-14 mb-20 blue ">
+    <p class="text-tertiary-color font-title-font  text-6xl  my-3 ml-3 t font-extrabold ">{{title}}</p>
     <div #swiperContainer class="swiper-container">
         <div class="swiper-wrapper">
             <ng-container *ngFor="let movie of videoContents">
-                <div (mouseenter)="setHoverMovie(movie)" (mouseleave)="clearHoverMovie()" class="swiper-slide relative">
+                <div (mouseenter)="setHoverMovie(movie)" (mouseleave)="clearHoverMovie()"
+                    class="swiper-slide relative border-2 border-solid border-tertiary-color">
                     <img [src]=" movie.poster_path | image" alt="" />
                     <div @fade *ngIf="movie.title === this.selectedContent || (movie.name === this.selectedContent)"
                         class="desc py-2 bg-tertiary-color bg-[url('/assets/GrainTexture_20.jpg')] bg-blend-multiply opacity-95

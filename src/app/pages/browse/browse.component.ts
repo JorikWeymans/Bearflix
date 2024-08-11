@@ -30,7 +30,7 @@ export class BrowseComponent implements OnInit
   bannerVideo$ = new Observable<any>();
 
 
-  movies: IVideoContent[] = [];
+  bearMovies: IVideoContent[] = [];
   tvShows: IVideoContent[] = [];
   ratedMovies: IVideoContent[] = [];
   nowPlayingMovies: IVideoContent[] = [];
@@ -41,8 +41,8 @@ export class BrowseComponent implements OnInit
 
   sources =
     [
-      this.movieService.getMovies(),
-      this.movieService.getTvShows(),
+      this.movieService.getMovies('10468', '16'),
+      this.movieService.getMovies('193099'),
       this.movieService.getTopRated(),
       //this.movieService.getRatedMovies(),
       this.movieService.getNowPlayingMovies(),
@@ -62,16 +62,21 @@ export class BrowseComponent implements OnInit
   {
     forkJoin(this.sources)
       .pipe(
-        map(([movies, tvShows, ratedMovies, nowPlaying, upcoming, popular/*, topRated*/]) =>
+        map(([bearMovies, tvShows, ratedMovies, nowPlaying, upcoming, popular/*, topRated*/]) =>
         {
-          this.bannerDetail$ = this.movieService.getBannerDetail(movies.results[0].id);
-          this.bannerVideo$ = this.movieService.getBannerVideo(movies.results[0].id);
 
-          return { movies, tvShows, ratedMovies, nowPlaying, upcoming, popular/*, topRated */ }
+
+          console.log(tvShows);
+          bearMovies.results = bearMovies.results.filter((item: IVideoContent) => item.id !== 62177);
+          tvShows.results = tvShows.results.filter((item: IVideoContent) => item.id !== 44925);
+          this.bannerDetail$ = this.movieService.getBannerDetail(bearMovies.results[0].id);
+          this.bannerVideo$ = this.movieService.getBannerVideo(bearMovies.results[0].id);
+
+          return { bearMovies, tvShows, ratedMovies, nowPlaying, upcoming, popular/*, topRated */ }
         })
       ).subscribe((res: any) =>
       {
-        this.movies = res.movies.results as IVideoContent[];
+        this.bearMovies = res.bearMovies.results as IVideoContent[];
         this.tvShows = res.tvShows.results as IVideoContent[];
         this.ratedMovies = res.ratedMovies.results as IVideoContent[];
         this.nowPlayingMovies = res.nowPlaying.results as IVideoContent[];
