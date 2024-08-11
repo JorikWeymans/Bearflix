@@ -1,0 +1,13 @@
+<img [src]=" movie.poster_path | image" alt="" (mouseenter)="startHover()" (mouseleave)="endHover()" />
+<div @fade *ngIf="isHovered" class="desc py-2 bg-tertiary-color bg-[url('/assets/GrainTexture_20.jpg')] bg-blend-multiply opacity-95
+                            overflow-hidden" (mouseenter)="startHover()" (mouseleave)="endHover()">
+    <div class=" h-full border-secondary-color border-t border-b border-dashed pt-2 px-2">
+        <span class="text-base  text-secondary-color flex flex-wrap font-bold">{{movie.original_title}}</span>
+        <p class="text-xs text-primary-color my-3 ">{{movie.overview | description:160}}</p>
+        <div class="py-3 absolute w-[90%] bottom-1">
+            <p class="text-xs text-primary-color">
+                Vote Average: <span class="text-green-500"> {{movie.vote_average}}</span>
+            </p>
+        </div>
+    </div>
+</div>

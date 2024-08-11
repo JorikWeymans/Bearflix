@@ -85,4 +85,9 @@ export class BrowseComponent implements OnInit
         /*this.topRatedMovies = res.topRated.results as IVideoContent[];*/
       })
   }
+
+  public OpenMovieModal(): void
+  {
+    console.log("aadadada");
+  }
 }

@@ -6,22 +6,16 @@ import { ImagePipe } from '@shared/Pipes/image.pipe';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 import Swiper from 'swiper';
+import { MovieCarouselItemComponent } from "../movie-carousel-item/movie-carousel-item.component";
 
 
 @Component({
   selector: 'app-movie-carousel',
   standalone: true,
-  imports: [CommonModule, DescriptionPipe, ImagePipe],
+  imports: [CommonModule, DescriptionPipe, ImagePipe, MovieCarouselItemComponent],
   templateUrl: './movie-carousel.component.html',
   styleUrl: './movie-carousel.component.scss',
-  animations: [
-    trigger('fade', [
-      transition('void => *', [
-        style({ opacity: 0 }),
-        animate(500, style({ opacity: 0.95 }))
-      ])
-    ])
-  ]
+
 })
 
 export class MovieCarouselComponent implements AfterViewInit, OnInit
@@ -29,6 +23,7 @@ export class MovieCarouselComponent implements AfterViewInit, OnInit
   @Input() videoContents: IVideoContent[] = []
   @Input() title!: string;
   @ViewChild('swiperContainer') swiperContainer!: ElementRef
+  @ViewChild(MovieCarouselItemComponent) movieCarouselItem!: MovieCarouselItemComponent;
   selectedContent: string | null = null;
 
   constructor() { }
@@ -86,11 +81,18 @@ export class MovieCarouselComponent implements AfterViewInit, OnInit
 
   setHoverMovie(movie: IVideoContent)
   {
+    this.movieCarouselItem.startHover();
     this.selectedContent = movie.title ?? movie.name;
   }
 
   clearHoverMovie()
   {
+    this.movieCarouselItem.endHover();
     this.selectedContent = null;
+  }
+
+  public onMoviePressed(): void
+  {
+
   }
 }
