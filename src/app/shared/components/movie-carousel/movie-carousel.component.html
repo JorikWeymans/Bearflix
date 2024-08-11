@@ -4,7 +4,7 @@
         <div class="swiper-wrapper">
             <ng-container *ngFor="let movie of videoContents">
                 <div class="swiper-slide relative border-2 border-solid border-tertiary-color">
-                    <app-movie-carousel-item [movie]="movie" />
+                    <app-movie-carousel-item [movie]="movie" [onClicked]="onItemClicked" />
                 </div>
             </ng-container>
         </div>

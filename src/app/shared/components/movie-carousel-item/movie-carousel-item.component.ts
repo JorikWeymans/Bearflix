@@ -22,17 +22,25 @@ import { animate, style, transition, trigger } from '@angular/animations';
 export class MovieCarouselItemComponent
 {
   @Input({ required: true }) movie!: IVideoContent;
+  @Input() onClicked!: (content: IVideoContent) => void;
 
   isHovered: Boolean = false;
 
 
   public startHover(): void
   {
-    this.isHovered = true;
+    this.isHovered = true
   }
 
   public endHover(): void
   {
-    this.isHovered = false;
+    this.isHovered = false
+  }
+
+  public onPressed(): void
+  {
+    if (this.onClicked == null) return;
+
+    this.onClicked(this.movie);
   }
 }

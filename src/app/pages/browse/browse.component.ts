@@ -57,7 +57,6 @@ export class BrowseComponent implements OnInit
     this.auth.signOut();
   }
 
-
   ngOnInit(): void
   {
     forkJoin(this.sources)
@@ -86,8 +85,9 @@ export class BrowseComponent implements OnInit
       })
   }
 
-  public OpenMovieModal(): void
+  public openMovieModal(content: IVideoContent): void
   {
-    console.log("aadadada");
+
   }
+
 }

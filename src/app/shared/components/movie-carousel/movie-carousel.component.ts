@@ -22,6 +22,8 @@ export class MovieCarouselComponent implements AfterViewInit, OnInit
 {
   @Input() videoContents: IVideoContent[] = []
   @Input() title!: string;
+  @Input({ required: true }) onItemClicked!: (content: IVideoContent) => void;
+
   @ViewChild('swiperContainer') swiperContainer!: ElementRef
   @ViewChild(MovieCarouselItemComponent) movieCarouselItem!: MovieCarouselItemComponent;
   selectedContent: string | null = null;
@@ -95,4 +97,9 @@ export class MovieCarouselComponent implements AfterViewInit, OnInit
   {
 
   }
+  public t(content: IVideoContent): void
+  {
+    console.log(content);
+  }
+
 }
