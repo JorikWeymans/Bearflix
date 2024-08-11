@@ -18,7 +18,6 @@ import { FooterComponent } from "../../browse/footer/footer.component";
 })
 export class BrowseComponent implements OnInit
 {
-
   auth = inject(AuthService)
   movieService = inject(MovieService)
 
@@ -63,9 +62,6 @@ export class BrowseComponent implements OnInit
       .pipe(
         map(([bearMovies, tvShows, ratedMovies, nowPlaying, upcoming, popular/*, topRated*/]) =>
         {
-
-
-          console.log(tvShows);
           bearMovies.results = bearMovies.results.filter((item: IVideoContent) => item.id !== 62177);
           tvShows.results = tvShows.results.filter((item: IVideoContent) => item.id !== 44925);
           this.bannerDetail$ = this.movieService.getBannerDetail(bearMovies.results[0].id);
