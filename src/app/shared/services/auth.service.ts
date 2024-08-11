@@ -20,7 +20,7 @@ export class AuthService
   public initialize(sender: any, buttonDiv: HTMLElement | null, onLoggedIn: (sender: any, resp: any) => void): void
   {
     google.accounts.id.initialize({
-      client_id: '152883696216-mistirreo1g2r48kabshjqjt6trg3cfs.apps.googleusercontent.com',
+      client_id: '1075512293337-9thh0cg1kn7htu5t96i54ceoev920tdh.apps.googleusercontent.com',
       callback: (resp: any) => onLoggedIn(sender, resp)
     });
 
