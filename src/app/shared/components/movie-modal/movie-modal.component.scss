@@ -1,0 +1,10 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+::ng-deep .custom-dialog-container {}
+
+
+::ng-deep .mdc-dialog__surface {
+    @apply border-2 border-solid border-tertiary-color rounded;
+}

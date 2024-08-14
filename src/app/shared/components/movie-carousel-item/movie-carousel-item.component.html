@@ -1,5 +1,5 @@
 <div id="#container-for-events" (mouseenter)="startHover()" (mouseleave)="endHover()" (click)="onPressed()">
-    <img [src]=" movie.poster_path | image" alt="" />
+    <img class="h-full" [src]=" movie.poster_path | image" alt="" />
     <div @fade *ngIf="isHovered" class="desc py-2 bg-tertiary-color bg-[url('/assets/GrainTexture_20.jpg')] bg-blend-multiply opacity-95
                                 overflow-hidden">
         <div class=" h-full border-secondary-color border-t border-b border-dashed pt-2 px-2">

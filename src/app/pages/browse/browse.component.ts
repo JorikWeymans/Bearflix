@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, Inject, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '@shared/services/auth.service';
 import { MovieCarouselComponent } from '@shared/components/movie-carousel/movie-carousel.component';
@@ -8,7 +8,9 @@ import { MovieService } from '@shared/services/movie.service';
 import { IVideoContent } from '@shared/models/video-content.interface';
 import { forkJoin, map, Observable } from 'rxjs';
 import { FooterComponent } from "../../browse/footer/footer.component";
-
+import { MatDialog } from '@angular/material/dialog';
+import { MovieModalComponent } from '@shared/components/movie-modal/movie-modal.component';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-browse',
   standalone: true,
@@ -18,8 +20,8 @@ import { FooterComponent } from "../../browse/footer/footer.component";
 })
 export class BrowseComponent implements OnInit
 {
-  auth = inject(AuthService)
-  movieService = inject(MovieService)
+  readonly auth = inject(AuthService)
+  readonly movieService = inject(MovieService)
 
   name = JSON.parse(sessionStorage.getItem("LoggedInUser")!).name;
   profileImage = JSON.parse(sessionStorage.getItem("LoggedInUser")!).picture;
@@ -38,6 +40,10 @@ export class BrowseComponent implements OnInit
   upcomingMovies: IVideoContent[] = [];
 
 
+  constructor(public dialog: MatDialog)
+  {
+    this.openMovieModal = this.openMovieModal.bind(this);
+  }
   sources =
     [
       this.movieService.getMovies('10468', '16'),
@@ -84,6 +90,28 @@ export class BrowseComponent implements OnInit
   public openMovieModal(content: IVideoContent): void
   {
 
+    let dialogRef = this.dialog.open(MovieModalComponent, {
+      width: '1000px',
+      height: '600px',
+
+      maxWidth: '1500px',
+      maxHeight: '800px',
+
+      panelClass: 'custom-dialog-container',
+      data: content,
+    });
+
+
+    //dialogRef.afterClosed().subscribe(result =>
+    //{
+    //  console.log(`Dialog result: ${result}`); // Pizza!
+    //});
   }
 
+
 }
+const movieData = {
+  title: 'Inception',
+  director: 'Christopher Nolan',
+  year: 2010
+};
