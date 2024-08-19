@@ -21,17 +21,35 @@ const options = {
 @Injectable({
   providedIn: 'root'
 })
-export class MovieService
+
+
+export class MovieService 
 {
-  http = inject(HttpClient)
+  private http = inject(HttpClient)
+  private genreMap!: Map<number, string>;
 
   constructor() 
   {
-    /*this.http.get<any>('https://api.themoviedb.org/3/authentication/guest_session/new', options).subscribe(res =>
+    this.http.get<any>('https://api.themoviedb.org/3/genre/movie/list', options).subscribe(res =>
     {
-      console.log(res);
-    })*/
+      this.genreMap = new Map(
+        res["genres"].map((genre: any) => [genre.id, genre.name])
+      );
+    })
   }
+
+
+  public genreIdsToName(arr: number[]): string[]
+  {
+
+    const flt = Array.from(this.genreMap.entries())
+      .filter(([id]) => arr.includes(id))  // Keep only those whose ID is in `arr`
+      .map(([id, name]) => name);
+    return flt;
+
+  }
+
+
 
   public getMovies(keyword: string = '', genre: string = '') 
   {

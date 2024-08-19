@@ -1,7 +1,10 @@
-<div class=" flex w-full h-full">
+<div class=" flex w-full h-full bg-red-600">
     <img [src]=" data.poster_path | image" alt="" />
     <div>
-        <h1>{{data.title}}</h1>
+        <h1 class="flex">{{data.title}}</h1>
+        <ul>
+            <li *ngFor=" let genre of genres">{{genre}}</li>
+        </ul>
         <p>{{data.overview}}</p>
     </div>
 </div>
