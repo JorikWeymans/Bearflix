@@ -5,9 +5,10 @@
     [key]="(bannerVideo$ | async)?.results[0].key" />
 <app-movie-carousel [title]="'BEARFLIX RECOMENDATIONS'" [videoContents]="bearMovies" [onItemClicked]="openMovieModal" />
 <app-movie-carousel [title]="'Trending TV shows'" [videoContents]="tvShows" [onItemClicked]="openMovieModal" />
-<app-movie-carousel [title]="'Now Playing Movies'" [videoContents]="nowPlayingMovies"
+<app-movie-carousel [title]="'Popular movies'" [videoContents]="ratedMovies" [onItemClicked]="openMovieModal" />
+<!--<app-movie-carousel [title]="'Now Playing Movies'" [videoContents]="nowPlayingMovies"
     [onItemClicked]="openMovieModal" />
 <app-movie-carousel [title]="'Popular Movies'" [videoContents]="popularMovies" [onItemClicked]="openMovieModal" />
-<!-- <app-movie-carousel [title]="'Top Rated Movies'" [videoContents]="topRatedMovies" />-->
-<app-movie-carousel [title]="'Upcoming Movies'" [videoContents]="upcomingMovies" [onItemClicked]="openMovieModal" />
+ 
+<app-movie-carousel [title]="'Upcoming Movies'" [videoContents]="upcomingMovies" [onItemClicked]="openMovieModal" />-->
 <app-footer />

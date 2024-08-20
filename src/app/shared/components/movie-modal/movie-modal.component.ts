@@ -15,12 +15,14 @@ export class MovieModalComponent
 {
   private readonly movieService = inject(MovieService)
 
-  readonly genres!: string[];
+  public readonly genres!: string[];
+  public readonly date!: string;
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: IVideoContent)
   {
     console.log(data);
     this.genres = this.movieService.genreIdsToName(this.data.genre_ids);
-    console.log(this.genres);
-
+    this.date = new Date(data.release_date).toDateString();
+    data.original_language = data.original_language.toUpperCase();
   }
 }

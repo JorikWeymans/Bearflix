@@ -34,10 +34,10 @@ export class BrowseComponent implements OnInit
   bearMovies: IVideoContent[] = [];
   tvShows: IVideoContent[] = [];
   ratedMovies: IVideoContent[] = [];
-  nowPlayingMovies: IVideoContent[] = [];
+  /*nowPlayingMovies: IVideoContent[] = [];
   popularMovies: IVideoContent[] = [];
   topRatedMovies: IVideoContent[] = [];
-  upcomingMovies: IVideoContent[] = [];
+  upcomingMovies: IVideoContent[] = [];*/
 
 
   constructor(public dialog: MatDialog)
@@ -48,11 +48,11 @@ export class BrowseComponent implements OnInit
     [
       this.movieService.getMovies('10468', '16'),
       this.movieService.getMovies('193099'),
-      this.movieService.getTopRated(),
-      //this.movieService.getRatedMovies(),
-      this.movieService.getNowPlayingMovies(),
-      this.movieService.getUpcomingMovies(),
+      //this.movieService.getTopRated(),
       this.movieService.getPopularMovies(),
+      //this.movieService.getNowPlayingMovies(),
+      //this.movieService.getUpcomingMovies(),
+      //this.movieService.getPopularMovies(),
 
     ];
 
@@ -66,24 +66,24 @@ export class BrowseComponent implements OnInit
   {
     forkJoin(this.sources)
       .pipe(
-        map(([bearMovies, tvShows, ratedMovies, nowPlaying, upcoming, popular/*, topRated*/]) =>
+        map(([bearMovies, tvShows, ratedMovies/*, nowPlaying, upcoming, popular, topRated*/]) =>
         {
           bearMovies.results = bearMovies.results.filter((item: IVideoContent) => item.id !== 62177);
           tvShows.results = tvShows.results.filter((item: IVideoContent) => item.id !== 44925);
           this.bannerDetail$ = this.movieService.getBannerDetail(bearMovies.results[0].id);
           this.bannerVideo$ = this.movieService.getBannerVideo(bearMovies.results[0].id);
 
-          return { bearMovies, tvShows, ratedMovies, nowPlaying, upcoming, popular/*, topRated */ }
+          return { bearMovies, tvShows, ratedMovies/*, nowPlaying, upcoming, popular, topRated */ }
         })
       ).subscribe((res: any) =>
       {
         this.bearMovies = res.bearMovies.results as IVideoContent[];
         this.tvShows = res.tvShows.results as IVideoContent[];
         this.ratedMovies = res.ratedMovies.results as IVideoContent[];
-        this.nowPlayingMovies = res.nowPlaying.results as IVideoContent[];
+        /*this.nowPlayingMovies = res.nowPlaying.results as IVideoContent[];
         this.upcomingMovies = res.upcoming.results as IVideoContent[];
         this.popularMovies = res.popular.results as IVideoContent[];
-        /*this.topRatedMovies = res.topRated.results as IVideoContent[];*/
+        this.topRatedMovies = res.topRated.results as IVideoContent[];*/
       })
   }
 

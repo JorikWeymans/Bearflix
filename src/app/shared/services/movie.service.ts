@@ -38,7 +38,6 @@ export class MovieService
     })
   }
 
-
   public genreIdsToName(arr: number[]): string[]
   {
 
@@ -48,8 +47,6 @@ export class MovieService
     return flt;
 
   }
-
-
 
   public getMovies(keyword: string = '', genre: string = '') 
   {

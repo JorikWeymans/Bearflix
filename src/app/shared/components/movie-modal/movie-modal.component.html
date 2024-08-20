@@ -1,10 +1,23 @@
-<div class=" flex w-full h-full bg-red-600">
+<div class=" flex w-full h-full">
     <img [src]=" data.poster_path | image" alt="" />
-    <div>
-        <h1 class="flex">{{data.title}}</h1>
-        <ul>
-            <li *ngFor=" let genre of genres">{{genre}}</li>
-        </ul>
-        <p>{{data.overview}}</p>
+    <div class="h-full w-full py-4 bg-tertiary-color bg-[url('/assets/GrainTexture_20.jpg')] bg-blend-multiply opacity-95
+    overflow-hidden">
+        <div class="h-full w-full border-secondary-color border-y-2 border-dashed pt-2 px-4">
+            <h1 class="font-title-font text-secondary-color text-6xl ">
+                {{data.title}}
+            </h1>
+            <div class="flex font-default-font text-l text-primary-color gap-2 items-center">
+                <h2>{{date}} </h2>
+                <h2 class="text-xs">◇</h2>
+                <h2>{{data.original_language}}</h2>
+                <h2 class="text-xs">◇</h2>
+                <ul class="flex   gap-2 lh-xl">
+                    <li *ngFor=" let genre of genres">{{genre}}</li>
+                </ul>
+            </div>
+            <h2 class="font-default-font text-2xl text-secondary-color pt-4">Description</h2>
+            <p class="font-default-font text-xl text-primary-color pt-4">{{data.overview}}</p>
+        </div>
+
     </div>
 </div>
