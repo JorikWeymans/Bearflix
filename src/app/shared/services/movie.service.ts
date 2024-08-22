@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 
 const options = {
@@ -40,7 +41,6 @@ export class MovieService
 
   public genreIdsToName(arr: number[]): string[]
   {
-
     const flt = Array.from(this.genreMap.entries())
       .filter(([id]) => arr.includes(id))  // Keep only those whose ID is in `arr`
       .map(([id, name]) => name);
@@ -55,6 +55,11 @@ export class MovieService
     newOptions.params.with_keywords = keyword;
 
     return this.http.get<any>('https://api.themoviedb.org/3/discover/movie', newOptions)
+  }
+
+  public getCredits(movieId: number): any
+  {
+    return this.http.get<any>(`https://api.themoviedb.org/3/movie/${movieId}/credits`, options)
   }
 
   getTvShows()

@@ -11,6 +11,7 @@ import { FooterComponent } from "../../browse/footer/footer.component";
 import { MatDialog } from '@angular/material/dialog';
 import { MovieModalComponent } from '@shared/components/movie-modal/movie-modal.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ICastContent } from '@shared/models/cast-content.interface';
 @Component({
   selector: 'app-browse',
   standalone: true,
@@ -89,17 +90,31 @@ export class BrowseComponent implements OnInit
 
   public openMovieModal(content: IVideoContent): void
   {
+    let topCast!: ICastContent[];
+    this.movieService.getCredits(content.id).subscribe((res: any) =>
+    {
+      topCast = res.cast.slice(0, 3).map((e: any) => e as ICastContent);
 
-    let dialogRef = this.dialog.open(MovieModalComponent, {
-      width: '1000px',
-      height: '600px',
+      let dialogRef = this.dialog.open(MovieModalComponent, {
+        width: '1000px',
+        height: '600px',
 
-      maxWidth: '1500px',
-      maxHeight: '800px',
+        maxWidth: '1500px',
+        maxHeight: '800px',
 
-      panelClass: 'custom-dialog-container',
-      data: content,
-    });
+        panelClass: 'custom-dialog-container',
+        data: {
+          content: content,
+          topCast: topCast,
+        }
+      });
+
+      //const c = res.cast.slice(0, 3).map( (x : any) => x.character);
+      //console
+    })
+
+
+
 
 
     //dialogRef.afterClosed().subscribe(result =>

@@ -17,6 +17,16 @@
             </div>
             <h2 class="font-default-font text-2xl text-secondary-color pt-4">Description</h2>
             <p class="font-default-font text-xl text-primary-color pt-4">{{data.overview}}</p>
+            <h2 class="font-default-font text-2xl text-secondary-color pt-4">Top cast</h2>
+
+            <ul class="flex gap-5 pt-4">
+                <li *ngFor="let cast of topcast" class="flex flex-col items-center">
+                    <img [src]=" cast.profile_path | image" alt="" width="50" class="rounded" />
+                    <h3 class="font-default-font text-l text-secondary-color">{{cast.name}}</h3>
+                    <p class="font-default-font text-sm text-primary-color">{{cast.character}}</p>
+                </li>
+            </ul>
+
         </div>
 
     </div>

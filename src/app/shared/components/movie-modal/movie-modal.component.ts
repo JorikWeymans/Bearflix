@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ICastContent } from '@shared/models/cast-content.interface';
 import { IVideoContent } from '@shared/models/video-content.interface';
 import { ImagePipe } from '@shared/Pipes/image.pipe';
 import { MovieService } from '@shared/services/movie.service';
@@ -18,10 +19,20 @@ export class MovieModalComponent
   public readonly genres!: string[];
   public readonly date!: string;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: IVideoContent)
+  public readonly data!: IVideoContent;
+  public readonly topcast!: ICastContent[];
+
+  constructor(@Inject(MAT_DIALOG_DATA) public dat: any)
   {
+    this.data = dat.content;
+    this.topcast = dat.topCast;
+
+    const data = this.data;
+
     console.log(data);
-    this.genres = this.movieService.genreIdsToName(this.data.genre_ids);
+
+    console.log(dat.topCast);
+    this.genres = this.movieService.genreIdsToName(data.genre_ids);
     this.date = new Date(data.release_date).toDateString();
     data.original_language = data.original_language.toUpperCase();
   }
