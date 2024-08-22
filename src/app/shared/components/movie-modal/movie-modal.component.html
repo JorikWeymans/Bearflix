@@ -4,7 +4,7 @@
     overflow-hidden">
         <div class="h-full w-full border-secondary-color border-y-2 border-dashed pt-2 px-4">
             <h1 class="font-title-font text-secondary-color text-6xl ">
-                {{data.title}}
+                {{data.title | removeSpecialChar }}
             </h1>
             <div class="flex font-default-font text-l text-primary-color gap-2 items-center">
                 <h2>{{date}} </h2>
@@ -21,7 +21,7 @@
 
             <ul class="flex gap-5 pt-4">
                 <li *ngFor="let cast of topcast" class="flex flex-col items-center">
-                    <img [src]=" cast.profile_path | image" alt="" width="50" class="rounded" />
+                    <app-movie-modal-cast imageSource="{{cast.profile_path}}" />
                     <h3 class="font-default-font text-l text-secondary-color">{{cast.name}}</h3>
                     <p class="font-default-font text-sm text-primary-color">{{cast.character}}</p>
                 </li>

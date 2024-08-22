@@ -5,10 +5,15 @@ import { ICastContent } from '@shared/models/cast-content.interface';
 import { IVideoContent } from '@shared/models/video-content.interface';
 import { ImagePipe } from '@shared/Pipes/image.pipe';
 import { MovieService } from '@shared/services/movie.service';
+import { MovieModalCastComponent } from '../movie-modal-cast/movie-modal-cast.component';
+import { RemoveSpecialCharPipe } from '@shared/Pipes/remove-special-char.pipe';
+
+
+
 @Component({
   selector: 'app-movie-modal',
   standalone: true,
-  imports: [CommonModule, ImagePipe],
+  imports: [CommonModule, ImagePipe, MovieModalCastComponent, RemoveSpecialCharPipe],
   templateUrl: './movie-modal.component.html',
   styleUrl: './movie-modal.component.scss'
 })
@@ -22,6 +27,7 @@ export class MovieModalComponent
   public readonly data!: IVideoContent;
   public readonly topcast!: ICastContent[];
 
+
   constructor(@Inject(MAT_DIALOG_DATA) public dat: any)
   {
     this.data = dat.content;
@@ -29,9 +35,6 @@ export class MovieModalComponent
 
     const data = this.data;
 
-    console.log(data);
-
-    console.log(dat.topCast);
     this.genres = this.movieService.genreIdsToName(data.genre_ids);
     this.date = new Date(data.release_date).toDateString();
     data.original_language = data.original_language.toUpperCase();

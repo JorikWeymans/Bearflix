@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MovieModalComponent } from '@shared/components/movie-modal/movie-modal.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ICastContent } from '@shared/models/cast-content.interface';
+
 @Component({
   selector: 'app-browse',
   standalone: true,
@@ -93,7 +94,12 @@ export class BrowseComponent implements OnInit
     let topCast!: ICastContent[];
     this.movieService.getCredits(content.id).subscribe((res: any) =>
     {
-      topCast = res.cast.slice(0, 3).map((e: any) => e as ICastContent);
+      topCast = res.cast.slice(0, 3).map((e: any) =>
+      {
+        e.profile_path = `https://image.tmdb.org/t/p/w500${e.profile_path}`;
+        return e as ICastContent;
+      }
+      );
 
       let dialogRef = this.dialog.open(MovieModalComponent, {
         width: '1000px',
@@ -112,15 +118,6 @@ export class BrowseComponent implements OnInit
       //const c = res.cast.slice(0, 3).map( (x : any) => x.character);
       //console
     })
-
-
-
-
-
-    //dialogRef.afterClosed().subscribe(result =>
-    //{
-    //  console.log(`Dialog result: ${result}`); // Pizza!
-    //});
   }
 
 
