@@ -1,20 +1,24 @@
 <header
     class="fixed w-full z-10 h-[110px] text-primary-color top-0 py-1.5 bg-tertiary-color bg-[url('/assets/GrainTexture_15.jpg')] bg-blend-multiply">
-    <div
+    <nav
         class="m-b-5 h-full px-site flex items-center justify-between border-secondary-color border-t border-b border-dashed">
+
         <div class="flex gap-5 flex-grow">
-            <div translate="no" class="flex gap-3 items-center select-none">
-                <img width="70" src="assets/Bearflix.png" alt="Bearflix logo" />
-                <h2 class="font-title-font text-5xl text-secondary-color" translate="no">Bearflix</h2>
-            </div>
+            <app-page-link text="" to="Home">
+                <div translate="no" class="flex gap-3 items-center select-none">
+                    <img width="70" src="assets/Bearflix.png" alt="Bearflix logo" />
+                    <h2 class="font-title-font text-5xl text-secondary-color" translate="no">Bearflix</h2>
+                </div>
+            </app-page-link>
+
 
             <ul class="content-center flex items-center gap-16 flex-grow center justify-center ">
-                <li *ngFor="let item of navList"
-                    class="cursor-pointer font-extralight hover:text-gray-400 transition-[1s] text-xl">
-                    {{item}}</li>
+                <li *ngFor="let item of navList">
+                    <app-page-link [text]="item" [offset]="150"
+                        class="cursor-pointer font-extralight hover:text-gray-400 transition-[1s] text-xl"></app-page-link>
+                </li>
             </ul>
         </div>
-
         <div id="#profile-section" class=" flex items-center gap-2">
             <div class="flex items-center gap-2">
                 <a href="/"><span>Welcome <strong>{{name}}</strong></span></a>
@@ -23,5 +27,5 @@
             &nbsp; | &nbsp;
             <a href="/">Signout</a>
         </div>
-    </div>
+    </nav>
 </header>

@@ -4,8 +4,11 @@
 <app-banner [title]="(bannerDetail$ | async)?.original_title" [overview]="(bannerDetail$ | async)?.overview"
     [key]="(bannerVideo$ | async)?.results[0].key" [content]="bannerContent" [onReadMore]="openMovieModal" />
 
-<app-movie-carousel [title]="'BEARFLIX RECOMENDATIONS'" [videoContents]="bearMovies" [onItemClicked]="openMovieModal" />
-<app-movie-carousel [title]="'CLASSICS MOVIES'" [videoContents]="classicMovies" [onItemClicked]="openMovieModal" />
-<app-movie-carousel [title]="'POPULAR MOVIES'" [videoContents]="ratedMovies" [onItemClicked]="openMovieModal" />
-
+<app-movie-carousel id="Recomendations" [title]="'BEARFLIX RECOMENDATIONS'" [videoContents]="bearMovies"
+    [onItemClicked]="openMovieModal" />
+<app-movie-carousel id="Classical" [title]="'CLASSICS MOVIES'" [videoContents]="classicMovies"
+    [onItemClicked]="openMovieModal" />
+<app-movie-carousel id="Popular" [title]="'POPULAR MOVIES'" [videoContents]="ratedMovies"
+    [onItemClicked]="openMovieModal" />
+<div class="h-[50px]"></div>
 <app-footer />
