@@ -11,12 +11,15 @@ import { PageLinkComponent } from "../../../shared/components/page-link/page-lin
 })
 export class HeaderComponent
 {
+  static navList = ["Home", "Recomendations", "Classical", "Popular"]
+  navList!: string[];
+
   @Input({ required: true }) userImage: string = '';
   @Input({ required: true }) name: string = '';
 
   constructor()
   {
-    ViewportScroller
+    this.navList = HeaderComponent.navList;
   }
-  navList = ["Home", "Recomendations", "Classical", "Popular"]
+
 }

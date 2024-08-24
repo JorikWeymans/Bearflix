@@ -27,10 +27,10 @@
                 <div>
                     <h2 class="font-title-font text-2xl mt-[7px] text-secondary-color" translate="no">Navigation</h2>
                     <ul class="text-xl pt-2 mt-[7px]">
-                        <li class="">Home</li>
-                        <li class="pt-2">Recomendations</li>
-                        <li class="pt-2">Classical</li>
-                        <li class="pt-2">Popular</li>
+                        <li class="pt-2" *ngFor="let item of navList">
+                            <app-page-link [text]="item" [offset]="150"
+                                class="cursor-pointer font-extralight hover:text-gray-400 transition-[1s] "></app-page-link>
+                        </li>
                     </ul>
                 </div>
                 <div class="text-primary-color text-base leading-3 py-1">©2024 Bearflix. All rights reserved.
