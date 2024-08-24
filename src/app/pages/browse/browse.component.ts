@@ -31,15 +31,11 @@ export class BrowseComponent implements OnInit
 
   bannerDetail$ = new Observable<any>();
   bannerVideo$ = new Observable<any>();
-
+  bannerContent!: IVideoContent;
 
   bearMovies: IVideoContent[] = [];
-  tvShows: IVideoContent[] = [];
+  classicMovies: IVideoContent[] = [];
   ratedMovies: IVideoContent[] = [];
-  /*nowPlayingMovies: IVideoContent[] = [];
-  popularMovies: IVideoContent[] = [];
-  topRatedMovies: IVideoContent[] = [];
-  upcomingMovies: IVideoContent[] = [];*/
 
 
   constructor(public dialog: MatDialog)
@@ -50,12 +46,7 @@ export class BrowseComponent implements OnInit
     [
       this.movieService.getMovies('10468', '16'),
       this.movieService.getMovies('193099'),
-      //this.movieService.getTopRated(),
       this.movieService.getPopularMovies(),
-      //this.movieService.getNowPlayingMovies(),
-      //this.movieService.getUpcomingMovies(),
-      //this.movieService.getPopularMovies(),
-
     ];
 
   SignOut()
@@ -68,24 +59,21 @@ export class BrowseComponent implements OnInit
   {
     forkJoin(this.sources)
       .pipe(
-        map(([bearMovies, tvShows, ratedMovies/*, nowPlaying, upcoming, popular, topRated*/]) =>
+        map(([bearMovies, classicMovies, ratedMovies]) =>
         {
           bearMovies.results = bearMovies.results.filter((item: IVideoContent) => item.id !== 62177);
-          tvShows.results = tvShows.results.filter((item: IVideoContent) => item.id !== 44925 && item.id !== 1308871);
+          classicMovies.results = classicMovies.results.filter((item: IVideoContent) => item.id !== 44925 && item.id !== 1308871);
           this.bannerDetail$ = this.movieService.getBannerDetail(bearMovies.results[0].id);
           this.bannerVideo$ = this.movieService.getBannerVideo(bearMovies.results[0].id);
+          this.bannerContent = bearMovies.results[0];
 
-          return { bearMovies, tvShows, ratedMovies/*, nowPlaying, upcoming, popular, topRated */ }
+          return { bearMovies, classicMovies, ratedMovies }
         })
       ).subscribe((res: any) =>
       {
         this.bearMovies = res.bearMovies.results as IVideoContent[];
-        this.tvShows = res.tvShows.results as IVideoContent[];
+        this.classicMovies = res.classicMovies.results as IVideoContent[];
         this.ratedMovies = res.ratedMovies.results as IVideoContent[];
-        /*this.nowPlayingMovies = res.nowPlaying.results as IVideoContent[];
-        this.upcomingMovies = res.upcoming.results as IVideoContent[];
-        this.popularMovies = res.popular.results as IVideoContent[];
-        this.topRatedMovies = res.topRated.results as IVideoContent[];*/
       })
   }
 
@@ -101,7 +89,7 @@ export class BrowseComponent implements OnInit
       }
       );
 
-      let dialogRef = this.dialog.open(MovieModalComponent, {
+      this.dialog.open(MovieModalComponent, {
         width: '1000px',
         height: '600px',
 
@@ -120,10 +108,4 @@ export class BrowseComponent implements OnInit
     })
   }
 
-
 }
-const movieData = {
-  title: 'Inception',
-  director: 'Christopher Nolan',
-  year: 2010
-};

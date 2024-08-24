@@ -77,15 +77,4 @@ export class MovieCarouselComponent implements AfterViewInit, OnInit
       }
     })
   }
-
-
-  public onMoviePressed(): void
-  {
-
-  }
-  public t(content: IVideoContent): void
-  {
-    console.log(content);
-  }
-
 }

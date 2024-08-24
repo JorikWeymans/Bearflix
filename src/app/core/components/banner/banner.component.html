@@ -3,12 +3,17 @@
     <div class="pt-[20%] px-24 absolute h-full text-white bg-gradient-to-r from-black">
         <h1 class="text-6xl font-bold font-title-font">{{title}}</h1>
         <p class="inline-block py-6 text-xl w-1/4 flex-wrap"> {{overview}}</p>
-
         <div>
-            <button class="bg-white text-black py-4 px-12 text-xl rounded-lg hover:bg-opacity-70 transition-[1s]">
+            <button class="bg-white text-black py-4 px-12 text-xl center rounded-lg hover:bg-opacity-70 w-[170px]"
+                (click)="playButtonClicked()">
+                @if (isPlaying) {
+                ■ Stop
+                } @else {
                 ► Play
+                }
             </button>
-            <button class="mx-2 bg-gray-500 text-white px-12 py-4 text-xl bg-opacity-50 rounded-lg">
+            <button class="mx-2 bg-gray-500 text-white px-12 py-4 text-xl bg-opacity-50 rounded-lg w-[170px]"
+                (click)="onReadMoreclicked()">
                 More info
             </button>
         </div>

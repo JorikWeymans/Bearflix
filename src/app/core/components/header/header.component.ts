@@ -13,5 +13,5 @@ export class HeaderComponent
   @Input({ required: true }) userImage: string = '';
   @Input({ required: true }) name: string = '';
 
-  navList = ["Home", "TV Shows", "News & Popular", "My List"]
+  navList = ["Home", "Recomendations", "Classical", "Popular"]
 }
