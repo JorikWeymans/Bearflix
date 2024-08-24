@@ -14,6 +14,10 @@ module.exports = {
         'title-font': ['CarnevaleeFreakshow', 'sans-serif'], // Add custom font and fallback
         'default-font': ['Trepang', 'sans-serif']
       },
+      padding:
+      {
+        'site': '7%',
+      }
     },
   },
   plugins: [],
