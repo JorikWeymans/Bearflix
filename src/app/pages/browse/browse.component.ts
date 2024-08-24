@@ -26,9 +26,9 @@ export class BrowseComponent implements OnInit
   readonly auth = inject(AuthService)
   readonly movieService = inject(MovieService)
 
-  name = JSON.parse(sessionStorage.getItem("LoggedInUser")!).name;
+  name = JSON.parse(sessionStorage.getItem("LoggedInUser")!).given_name;
   profileImage = JSON.parse(sessionStorage.getItem("LoggedInUser")!).picture;
-  email = JSON.parse(sessionStorage.getItem("LoggedInUser")!).email;
+
 
   bannerDetail$ = new Observable<any>();
   bannerVideo$ = new Observable<any>();

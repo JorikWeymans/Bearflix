@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { jwtDecode } from 'jwt-decode';
 import { AuthService } from '@shared/services/auth.service';
 
 @Component({
@@ -34,17 +34,10 @@ export class LoginComponent implements OnInit
     }
   }
 
-  private decodeToken(token: string)
-  {
-    return JSON.parse(atob(token.split(".")[1]));
-  }
-
   private handleLogin(sender: LoginComponent, response: any)
   {
     if (response) {
-      const payLoad = sender.decodeToken(response.credential);
-      sessionStorage.setItem("LoggedInUser", JSON.stringify(payLoad));
-
+      sessionStorage.setItem("LoggedInUser", JSON.stringify(jwtDecode(response.credential)));
       sender.router.navigate(['browse'])
     }
   }
