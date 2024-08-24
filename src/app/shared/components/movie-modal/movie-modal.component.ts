@@ -38,5 +38,26 @@ export class MovieModalComponent
     this.genres = this.movieService.genreIdsToName(data.genre_ids);
     this.date = new Date(data.release_date).toDateString();
     data.original_language = data.original_language.toUpperCase();
+
+    console.log(data);
+
+    // clamping on sentence
+    let tmp: string = data.overview;
+    let tempLength: number = tmp.length;
+
+    while (tempLength > 500) {
+      // Don't take the look up until the last character because it will be a .
+      const i: number = tmp.lastIndexOf('.', tempLength - 2);
+      if (i > 0) {
+        tmp = tmp.substring(0, i + 1);
+        tempLength = tmp.length;
+      }
+      else {
+        // avoid infite loop when big sentence
+        tempLength = -1;
+      }
+    }
+
+    data.overview = tmp;
   }
 }

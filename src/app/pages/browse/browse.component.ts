@@ -71,7 +71,7 @@ export class BrowseComponent implements OnInit
         map(([bearMovies, tvShows, ratedMovies/*, nowPlaying, upcoming, popular, topRated*/]) =>
         {
           bearMovies.results = bearMovies.results.filter((item: IVideoContent) => item.id !== 62177);
-          tvShows.results = tvShows.results.filter((item: IVideoContent) => item.id !== 44925);
+          tvShows.results = tvShows.results.filter((item: IVideoContent) => item.id !== 44925 && item.id !== 1308871);
           this.bannerDetail$ = this.movieService.getBannerDetail(bearMovies.results[0].id);
           this.bannerVideo$ = this.movieService.getBannerVideo(bearMovies.results[0].id);
 
