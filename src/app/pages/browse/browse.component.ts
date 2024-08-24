@@ -7,11 +7,12 @@ import { BannerComponent } from '@core/components/banner/banner.component';
 import { MovieService } from '@shared/services/movie.service';
 import { IVideoContent } from '@shared/models/video-content.interface';
 import { forkJoin, map, Observable } from 'rxjs';
-import { FooterComponent } from "../../browse/footer/footer.component";
+
 import { MatDialog } from '@angular/material/dialog';
 import { MovieModalComponent } from '@shared/components/movie-modal/movie-modal.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ICastContent } from '@shared/models/cast-content.interface';
+import { FooterComponent } from '@core/components/footer/footer.component';
 
 @Component({
   selector: 'app-browse',
@@ -102,9 +103,6 @@ export class BrowseComponent implements OnInit
           topCast: topCast,
         }
       });
-
-      //const c = res.cast.slice(0, 3).map( (x : any) => x.character);
-      //console
     })
   }
 
